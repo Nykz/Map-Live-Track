@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Live Tracking
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openLocationModal()">
+        <ion-icon name="location"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-map></app-map>
+
+  <ion-modal
+    [isOpen]="openModal"
+    [breakpoints]="[0.4, 0.5, 0.7, 0.9]"
+    (didDismiss)="openModal = false"
+    [initialBreakpoint]="0.4">
+    <ng-template>
+      <ion-content color="light">
+        <form [formGroup]="form">
+          <ion-list>
+            <ion-list-header color="light">
+              <ion-label>
+                UPDATE SOURCE LOCATION
+              </ion-label>
+            </ion-list-header>
+            <ion-item-group class="ion-padding">
+              <ion-item>
+                <ion-input label="LATITUDE" labelPlacement="floating" formControlName="lat" type="number"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input label="LONGITUDE" labelPlacement="floating" formControlName="lng" type="number"></ion-input>
+              </ion-item>
+            </ion-item-group>
+          </ion-list>
+          <div class="ion-padding-horizontal">
+            <ion-button 
+              *ngIf="!isSubmitted"
+              expand="block" 
+              type="submit" 
+              color="primary"
+              [disabled]="!form?.valid"
+              (click)="onSubmit()">
+              UPDATE
+            </ion-button>
+            <ion-button 
+              *ngIf="isSubmitted"
+              expand="block" 
+              color="primary">
+              <ion-spinner name="crescent"></ion-spinner>
+            </ion-button>
+          </div>
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

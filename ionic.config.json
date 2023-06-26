@@ -1,0 +1,7 @@
+{
+  "name": "firebase-live-tracking",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
